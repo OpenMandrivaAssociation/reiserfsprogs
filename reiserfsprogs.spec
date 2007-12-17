@@ -13,7 +13,6 @@ Patch2:		reiserfsprogs-3.6.19-unaligned.patch
 BuildRequires:	libext2fs-devel
 Obsoletes:	reiserfs-utils
 Provides:	reiserfs-utils
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 Reiserfs is a file system using a plug-in based object oriented
