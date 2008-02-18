@@ -2,7 +2,7 @@ Summary:	The utilities to create reiserfs volumes
 Name:		reiserfsprogs
 Version:	3.6.19
 Epoch:		1
-Release:	%mkrel 3
+Release:	%manbo_mkrel 3
 License:	GPLv2-like
 Group:		System/Kernel and hardware
 Url:		http://www.namesys.com/
