@@ -17,6 +17,7 @@ Provides:	reiserfs-utils
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
+This package contains tools for reiserfs filesystems.
 Reiserfs is a file system using a plug-in based object oriented
 variant on classical balanced tree algorithms. The results when
 compared to the ext2fs conventional block allocation based file system
