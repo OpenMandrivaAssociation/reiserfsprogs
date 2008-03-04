@@ -2,7 +2,7 @@ Summary:	The utilities to create reiserfs volumes
 Name:		reiserfsprogs
 Version:	3.6.19
 Epoch:		1
-Release:	%manbo_mkrel 4
+Release:	%manbo_mkrel 5
 License:	GPLv2-like
 Group:		System/Kernel and hardware
 Url:		http://www.namesys.com/
@@ -19,11 +19,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 %description
 This package contains tools for reiserfs filesystems.
 Reiserfs is a file system using a plug-in based object oriented
-variant on classical balanced tree algorithms. The results when
-compared to the ext2fs conventional block allocation based file system
-running under the same operating system and employing the same
-buffering code suggest that these algorithms are overall more
-efficient, and are becoming more so every passing month.
+variant on classical balanced tree algorithms.
 
 %prep
 %setup -q
