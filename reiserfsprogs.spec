@@ -2,7 +2,7 @@ Summary:	The utilities to create reiserfs volumes
 Name:		reiserfsprogs
 Version:	3.6.19
 Epoch:		1
-Release:	%manbo_mkrel 6
+Release:	%manbo_mkrel 7
 License:	GPLv2-like
 Group:		System/Kernel and hardware
 Url:		http://www.namesys.com/
@@ -23,9 +23,9 @@ variant on classical balanced tree algorithms.
 
 %prep
 %setup -q
-%patch1 -p1
+%patch1 -p0 -b .make-the-force-option-works-in-resize_reiserfs
 %patch2 -p1 -b .unaligned
-%patch3 -p1
+%patch3 -p1 -b .uuid
 
 %build
 %configure2_5x
