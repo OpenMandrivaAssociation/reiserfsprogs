@@ -2,7 +2,7 @@ Summary:	The utilities to create reiserfs volumes
 Name:		reiserfsprogs
 Version:	3.6.19
 Epoch:		1
-Release:	%manbo_mkrel 8
+Release:	%manbo_mkrel 9
 License:	GPLv2-like
 Group:		System/Kernel and hardware
 Url:		http://www.namesys.com/
@@ -11,7 +11,7 @@ Patch1:		reiserfsprogs-3.6.2-make-the-force-option-works-in-resize_reiserfs.patc
 # From Ubuntu: avoid use of unaligned.h, which does not exist any more
 Patch2:		reiserfsprogs-3.6.19-unaligned.patch
 Patch3:		reiserfsprogs-3.6.19-uuid.patch
-BuildRequires:	libext2fs-devel
+BuildRequires:	libblkid-devel
 Obsoletes:	reiserfs-utils
 Provides:	reiserfs-utils
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
