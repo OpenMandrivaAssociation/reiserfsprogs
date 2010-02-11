@@ -1,16 +1,14 @@
 Summary:	The utilities to create reiserfs volumes
 Name:		reiserfsprogs
-Version:	3.6.19
+Version:	3.6.21
 Epoch:		1
-Release:	%manbo_mkrel 9
+Release:	%manbo_mkrel 1
 License:	GPLv2-like
 Group:		System/Kernel and hardware
 Url:		http://www.namesys.com/
 Source0:	ftp://ftp.namesys.com/pub/reiserfsprogs/%{name}-%{version}.tar.bz2
 Patch1:		reiserfsprogs-3.6.2-make-the-force-option-works-in-resize_reiserfs.patch
-# From Ubuntu: avoid use of unaligned.h, which does not exist any more
-Patch2:		reiserfsprogs-3.6.19-unaligned.patch
-Patch3:		reiserfsprogs-3.6.19-uuid.patch
+Patch3:		reiserfsprogs-3.6.21-uuid.patch
 BuildRequires:	libblkid-devel
 Obsoletes:	reiserfs-utils
 Provides:	reiserfs-utils
@@ -24,7 +22,6 @@ variant on classical balanced tree algorithms.
 %prep
 %setup -q
 %patch1 -p0 -b .make-the-force-option-works-in-resize_reiserfs
-%patch2 -p1 -b .unaligned
 %patch3 -p1 -b .uuid
 
 %build
