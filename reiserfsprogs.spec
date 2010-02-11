@@ -3,10 +3,10 @@ Name:		reiserfsprogs
 Version:	3.6.21
 Epoch:		1
 Release:	%manbo_mkrel 1
-License:	GPLv2-like
+License:	GPLv2 with exceptions
 Group:		System/Kernel and hardware
-Url:		http://www.namesys.com/
-Source0:	ftp://ftp.namesys.com/pub/reiserfsprogs/%{name}-%{version}.tar.bz2
+Url:		http://ftp.kernel.org/pub/linux/utils/fs/reiserfs/
+Source0:	http://ftp.kernel.org/pub/linux/utils/fs/reiserfs/%{name}-%{version}.tar.bz2
 Patch1:		reiserfsprogs-3.6.2-make-the-force-option-works-in-resize_reiserfs.patch
 Patch3:		reiserfsprogs-3.6.21-uuid.patch
 BuildRequires:	libblkid-devel
@@ -50,4 +50,3 @@ ln -s reiserfsck.8 %{buildroot}%{_mandir}/man8/fsck.reiserfs.8
 %doc README ChangeLog
 %attr(755,root,root) /sbin/*
 %{_mandir}/*/*
-
