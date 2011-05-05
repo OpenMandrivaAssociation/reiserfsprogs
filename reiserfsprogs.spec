@@ -2,7 +2,7 @@ Summary:	The utilities to create reiserfs volumes
 Name:		reiserfsprogs
 Version:	3.6.21
 Epoch:		1
-Release:	%manbo_mkrel 1
+Release:	%manbo_mkrel 2
 License:	GPLv2 with exceptions
 Group:		System/Kernel and hardware
 Url:		http://ftp.kernel.org/pub/linux/utils/fs/reiserfs/
