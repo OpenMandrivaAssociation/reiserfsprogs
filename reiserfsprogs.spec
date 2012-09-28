@@ -1,3 +1,5 @@
+%bcond_without	uclibc
+
 Summary:	The utilities to create reiserfs volumes
 Name:		reiserfsprogs
 Version:	3.6.21
@@ -11,8 +13,20 @@ Patch1:		reiserfsprogs-3.6.2-make-the-force-option-works-in-resize_reiserfs.patc
 Patch3:		reiserfsprogs-3.6.21-uuid.patch
 %rename		reiserfs-utils
 BuildRequires:	pkgconfig(blkid)
+%if %{with uclibc}
+BuildRequires:	uClibc-devel >= 0.9.33.2-9
+%endif
 
 %description
+This package contains tools for reiserfs filesystems.
+Reiserfs is a file system using a plug-in based object oriented
+variant on classical balanced tree algorithms.
+
+%package -n	uclibc-%{name}
+Summary:	The utilities to create reiserfs volumes (uClibc build)
+Group:		System/Kernel and hardware
+
+%description -n	uclibc-%{name}
 This package contains tools for reiserfs filesystems.
 Reiserfs is a file system using a plug-in based object oriented
 variant on classical balanced tree algorithms.
@@ -22,17 +36,34 @@ variant on classical balanced tree algorithms.
 %patch1 -p0 -b .force~
 %patch3 -p1 -b .uuid~
 
-%build
-%configure2_5x
+%if %{with uclibc}
+mkdir .uclibc
+cp -a * .uclibc
+%endif
 
-%make OPTFLAGS="%{optflags}"
+%build
+%if %{with uclibc}
+pushd .uclibc
+%configure2_5x	CC=%{uclibc_cc} \
+		CFLAGS="%{uclibc_cflags}" \
+		--sbindir=%{uclibc_root}/sbin
+%make
+popd
+%endif
+
+%configure2_5x	--sbindir=/sbin
+%make
 
 %install
-mkdir -p %{buildroot}%{_mandir}/man8
+%if %{with uclibc}
+%makeinstall_std -C .uclibc
+
+ln -s mkreiserfs %{buildroot}%{uclibc_root}/sbin/mkfs.reiserfs
+ln -s reiserfsck %{buildroot}%{uclibc_root}/sbin/fsck.reiserfs
+%endif
 
 %makeinstall_std
 
-mv %{buildroot}/{usr/,}sbin
 ln -s mkreiserfs %{buildroot}/sbin/mkfs.reiserfs
 ln -s reiserfsck %{buildroot}/sbin/fsck.reiserfs
 ln -s mkreiserfs.8 %{buildroot}%{_mandir}/man8/mkfs.reiserfs.8
@@ -42,3 +73,8 @@ ln -s reiserfsck.8 %{buildroot}%{_mandir}/man8/fsck.reiserfs.8
 %doc README ChangeLog
 /sbin/*
 %{_mandir}/*/*
+
+%if %{with uclibc}
+%files -n uclibc-%{name}
+%{uclibc_root}/sbin/*
+%endif
