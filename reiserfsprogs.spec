@@ -9,8 +9,8 @@ Url:		http://ftp.kernel.org/pub/linux/utils/fs/reiserfs/
 Source0:	http://ftp.kernel.org/pub/linux/utils/fs/reiserfs/%{name}-%{version}.tar.bz2
 Patch1:		reiserfsprogs-3.6.2-make-the-force-option-works-in-resize_reiserfs.patch
 Patch3:		reiserfsprogs-3.6.21-uuid.patch
-BuildRequires:	libblkid-devel
 %rename		reiserfs-utils
+BuildRequires:	pkgconfig(blkid)
 
 %description
 This package contains tools for reiserfs filesystems.
