@@ -14,7 +14,7 @@ Patch3:		reiserfsprogs-3.6.21-uuid.patch
 %rename		reiserfs-utils
 BuildRequires:	pkgconfig(blkid)
 %if %{with uclibc}
-BuildRequires:	uClibc-devel >= 0.9.33.2-9
+BuildRequires:	uClibc-devel >= 0.9.33.2-16
 %endif
 
 %description
@@ -44,8 +44,7 @@ cp -a * .uclibc
 %build
 %if %{with uclibc}
 pushd .uclibc
-%configure2_5x	CC=%{uclibc_cc} \
-		CFLAGS="%{uclibc_cflags}" \
+%uclibc_configure \
 		--sbindir=%{uclibc_root}/sbin
 %make
 popd
