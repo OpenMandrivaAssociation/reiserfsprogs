@@ -1,0 +1,51 @@
+--- reiserfsprogs-3.6.21/fsck/Makefile.am.link	2010-02-11 09:36:46.000000000 +0100
++++ reiserfsprogs-3.6.21/fsck/Makefile.am	2010-02-11 09:37:01.000000000 +0100
+@@ -7,5 +7,5 @@
+ man_MANS = reiserfsck.8
+ EXTRA_DIST = $(man_MANS)
+ 
+-reiserfsck_LDADD = $(top_srcdir)/reiserfscore/libcore.a $(top_srcdir)/lib/libmisc.a
++reiserfsck_LDADD = $(top_srcdir)/reiserfscore/libcore.a $(top_srcdir)/lib/libmisc.a -lblkid
+ 
+--- reiserfsprogs-3.6.21/fsck/Makefile.in.link	2010-02-11 09:37:08.000000000 +0100
++++ reiserfsprogs-3.6.21/fsck/Makefile.in	2010-02-11 09:37:20.000000000 +0100
+@@ -171,7 +171,7 @@
+ 
+ man_MANS = reiserfsck.8
+ EXTRA_DIST = $(man_MANS)
+-reiserfsck_LDADD = $(top_srcdir)/reiserfscore/libcore.a $(top_srcdir)/lib/libmisc.a
++reiserfsck_LDADD = $(top_srcdir)/reiserfscore/libcore.a $(top_srcdir)/lib/libmisc.a -lblkid
+ all: all-am
+ 
+ .SUFFIXES:
+--- reiserfsprogs-3.6.21/fsck/main.c.link	2010-02-11 09:37:52.000000000 +0100
++++ reiserfsprogs-3.6.21/fsck/main.c	2010-02-11 09:39:11.000000000 +0100
+@@ -8,6 +8,7 @@
+ #include <sys/resource.h>
+ #include <sys/mman.h>
+ #include <signal.h>
++#include <blkid/blkid.h>
+ #include <limits.h>
+ 
+ extern int screen_width;
+@@ -1248,6 +1249,7 @@
+ int main (int argc, char * argv [])
+ {
+     char * file_name;
++    char * devname;
+     struct fsck_data * data;
+     struct rlimit rlim = {RLIM_INFINITY, RLIM_INFINITY};
+     char *width;
+@@ -1277,6 +1279,12 @@
+ 
+     file_name = parse_options (data, argc, argv);
+ 
++    devname = blkid_get_devname(NULL, file_name, 0);
++    if (!devname) {
++	reiserfs_exit(EXIT_OPER, "reiserfsck: Unable to resolve %s", file_name);
++    }
++    file_name = devname;
++
+     if (data->mode != FSCK_AUTO)
+ 	print_banner ("reiserfsck");
+ 
