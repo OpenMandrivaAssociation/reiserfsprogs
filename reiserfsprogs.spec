@@ -2,8 +2,8 @@
 
 Summary:	The utilities to create reiserfs volumes
 Name:		reiserfsprogs
-Version:	3.6.21
 Epoch:		1
+Version:	3.6.21
 Release:	11
 License:	GPLv2 with exceptions
 Group:		System/Kernel and hardware
@@ -11,11 +11,11 @@ Url:		http://ftp.kernel.org/pub/linux/utils/fs/reiserfs/
 Source0:	http://ftp.kernel.org/pub/linux/utils/fs/reiserfs/%{name}-%{version}.tar.bz2
 Patch1:		reiserfsprogs-3.6.2-make-the-force-option-works-in-resize_reiserfs.patch
 Patch3:		reiserfsprogs-3.6.21-uuid.patch
-%rename		reiserfs-utils
 BuildRequires:	pkgconfig(blkid)
 %if %{with uclibc}
 BuildRequires:	uClibc-devel >= 0.9.33.2-16
 %endif
+%rename		reiserfs-utils
 
 %description
 This package contains tools for reiserfs filesystems.
@@ -77,3 +77,4 @@ ln -s reiserfsck.8 %{buildroot}%{_mandir}/man8/fsck.reiserfs.8
 %files -n uclibc-%{name}
 %{uclibc_root}/sbin/*
 %endif
+
