@@ -7,8 +7,8 @@ Version:	3.6.24
 Release:	2
 License:	GPLv2 with exceptions
 Group:		System/Kernel and hardware
-Url:		http://ftp.kernel.org/pub/linux/utils/fs/reiserfs/
-Source0:	http://ftp.kernel.org/pub/linux/utils/fs/reiserfs/%{name}-%{version}.tar.xz
+Url:		https://www.kernel.org/pub/linux/kernel/people/jeffm/reiserfsprogs/
+Source0:	https://www.kernel.org/pub/linux/kernel/people/jeffm/reiserfsprogs/%{name}-%{version}.tar.xz
 Patch1:		reiserfsprogs-3.6.2-make-the-force-option-works-in-resize_reiserfs.patch
 BuildRequires:	pkgconfig(blkid)
 %if %{with uclibc}
