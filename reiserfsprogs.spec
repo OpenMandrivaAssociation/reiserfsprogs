@@ -1,10 +1,10 @@
-%bcond_without	uclibc
+%bcond_with	uclibc
 
 Summary:	The utilities to create reiserfs volumes
 Name:		reiserfsprogs
 Epoch:		1
 Version:	3.6.24
-Release:	3
+Release:	4
 License:	GPLv2 with exceptions
 Group:		System/Kernel and hardware
 Url:		https://www.kernel.org/pub/linux/kernel/people/jeffm/reiserfsprogs/
@@ -21,6 +21,7 @@ This package contains tools for reiserfs filesystems.
 Reiserfs is a file system using a plug-in based object oriented
 variant on classical balanced tree algorithms.
 
+%if %{with uclibc}
 %package -n	uclibc-%{name}
 Summary:	The utilities to create reiserfs volumes (uClibc build)
 Group:		System/Kernel and hardware
@@ -29,6 +30,7 @@ Group:		System/Kernel and hardware
 This package contains tools for reiserfs filesystems.
 Reiserfs is a file system using a plug-in based object oriented
 variant on classical balanced tree algorithms.
+%endif
 
 %prep
 %setup -q
