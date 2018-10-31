@@ -2,7 +2,7 @@ Summary:	The utilities to create reiserfs volumes
 Name:		reiserfsprogs
 Epoch:		1
 Version:	3.6.24
-Release:	5
+Release:	6
 License:	GPLv2 with exceptions
 Group:		System/Kernel and hardware
 Url:		https://www.kernel.org/pub/linux/kernel/people/jeffm/reiserfsprogs/
