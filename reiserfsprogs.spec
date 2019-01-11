@@ -1,12 +1,12 @@
 Summary:	The utilities to create reiserfs volumes
 Name:		reiserfsprogs
 Epoch:		1
-Version:	3.6.24
-Release:	6
+Version:	3.6.27
+Release:	1
 License:	GPLv2 with exceptions
 Group:		System/Kernel and hardware
 Url:		https://www.kernel.org/pub/linux/kernel/people/jeffm/reiserfsprogs/
-Source0:	https://www.kernel.org/pub/linux/kernel/people/jeffm/reiserfsprogs/%{name}-%{version}.tar.xz
+Source0:	https://mirrors.edge.kernel.org/pub/linux/kernel/people/jeffm/reiserfsprogs/v3.6.27/%{name}-%{version}.tar.xz
 Patch1:		reiserfsprogs-3.6.2-make-the-force-option-works-in-resize_reiserfs.patch
 BuildRequires:	pkgconfig(blkid)
 %rename		reiserfs-utils
