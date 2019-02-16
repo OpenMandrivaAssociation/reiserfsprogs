@@ -1,0 +1,38 @@
+diff -up reiserfsprogs-3.6.24/include/misc.h.omv~ reiserfsprogs-3.6.24/include/misc.h
+--- reiserfsprogs-3.6.24/include/misc.h.omv~	2019-02-16 03:38:37.698329361 +0100
++++ reiserfsprogs-3.6.24/include/misc.h	2019-02-16 03:38:40.463376141 +0100
+@@ -72,7 +72,7 @@ int prepare_dma_check(dma_info_t *dma_in
+ int get_dma_info(dma_info_t *dma_info);
+ void clean_after_dma_check(int fd, dma_info_t *dma_info);
+ 
+-int valid_offset( int fd, loff_t offset);
++int valid_offset( int fd, off_t offset);
+ unsigned long count_blocks (char * filename, int blocksize);
+ 
+ void print_how_far (FILE * fp, unsigned long *passed, unsigned long total, unsigned int inc, int quiet);
+diff -up reiserfsprogs-3.6.24/include/reiserfs_fs.h.omv~ reiserfsprogs-3.6.24/include/reiserfs_fs.h
+--- reiserfsprogs-3.6.24/include/reiserfs_fs.h.omv~	2019-02-16 03:38:45.683464397 +0100
++++ reiserfsprogs-3.6.24/include/reiserfs_fs.h	2019-02-16 03:38:51.298559248 +0100
+@@ -30,7 +30,7 @@
+ */
+ 
+ #ifndef REISERFSPROGS_FS_H
+-#define REISERFSPRIGS_FS_H 
++#define REISERFSPROGS_FS_H 
+ 
+ typedef unsigned int blocknr_t;
+ 
+diff -up reiserfsprogs-3.6.24/include/reiserfs_lib.h.omv~ reiserfsprogs-3.6.24/include/reiserfs_lib.h
+--- reiserfsprogs-3.6.24/include/reiserfs_lib.h.omv~	2019-02-16 03:38:57.235659445 +0100
++++ reiserfsprogs-3.6.24/include/reiserfs_lib.h	2019-02-16 03:39:04.766786408 +0100
+@@ -270,8 +270,8 @@ int get_type (const struct key * key);
+ char * key_of_what (const struct key * key);
+ int type_unknown (struct key * key);
+ void set_type (int format, struct key * key, int type);
+-void set_offset (int format, struct key * key, loff_t offset);
+-void set_type_and_offset (int format, struct key * key, loff_t offset, int type);
++void set_offset (int format, struct key * key, off_t offset);
++void set_type_and_offset (int format, struct key * key, off_t offset, int type);
+ 
+ 
+ typedef int (*check_unfm_func_t) (reiserfs_filsys_t *, __u32);
