@@ -1,15 +1,21 @@
+%global optflags %{optflags} -D_GNU_SOURCE
+
+%define major 0
+%define libname %mklibname %{name} %{major}
+%define devel %mklibname %{name} -d
+
 Summary:	The utilities to create reiserfs volumes
 Name:		reiserfsprogs
 Epoch:		1
-Version:	3.6.24
-Release:	7
+Version:	3.6.27
+Release:	1
 License:	GPLv2 with exceptions
 Group:		System/Kernel and hardware
 Url:		https://www.kernel.org/pub/linux/kernel/people/jeffm/reiserfsprogs/
 Source0:	https://www.kernel.org/pub/linux/kernel/people/jeffm/reiserfsprogs/%{name}-%{version}.tar.xz
-Patch1:		reiserfsprogs-3.6.2-make-the-force-option-works-in-resize_reiserfs.patch
-Patch2:		reiserfs-3.6.24-compile.patch
-BuildRequires:	pkgconfig(blkid)
+BuildRequires:	pkgconfig(uuid)
+BuildRequires:	pkgconfig(com_err)
+BuildRequires:	acl-devel
 %rename		reiserfs-utils
 
 %description
@@ -17,23 +23,49 @@ This package contains tools for reiserfs filesystems.
 Reiserfs is a file system using a plug-in based object oriented
 variant on classical balanced tree algorithms.
 
+%package -n %{libname}
+Summary:	The utilities to create reiserfs volumes
+Group:		System/Kernel and hardware
+
+%description -n %{libname}
+This package contains tools for reiserfs filesystems.
+Reiserfs is a file system using a plug-in based object oriented
+variant on classical balanced tree algorithms.
+
+%package -n %{devel}
+Summary:	Development files for reiserfs
+Group:		Development/C
+
+%description -n %{devel}
+This package contains tools for reiserfs filesystems.
+Reiserfs is a file system using a plug-in based object oriented
+variant on classical balanced tree algorithms.
+
 %prep
-%setup -q
-%patch1 -p0 -b .force~
-%patch2 -p1 -b .compile~
+%autosetup -p1
 
 %build
 %configure --sbindir=/sbin
 
 #clang compat
 echo '#define inline' >> include/config.h
-%make
+%make_build
 
 %install
 rm -f %{buildroot}%{_mandir}/man8/*
-%makeinstall_std
+%make_install
+
+find %{buildroot}%{_libdir} -name "*.*a" -delete
 
 %files
 %doc README
 /sbin/*
 %{_mandir}/*/*
+
+%files -n %{libname}
+%{_libdir}/*.so.%{major}*
+
+%files -n %{devel}
+%{_includedir}/reiserfs/
+%{_libdir}/*.so
+%{_libdir}/pkgconfig/reiserfscore.pc
