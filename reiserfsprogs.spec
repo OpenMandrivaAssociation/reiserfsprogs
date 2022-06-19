@@ -8,7 +8,7 @@ Summary:	The utilities to create reiserfs volumes
 Name:		reiserfsprogs
 Epoch:		1
 Version:	3.6.27
-Release:	1
+Release:	2
 License:	GPLv2 with exceptions
 Group:		System/Kernel and hardware
 Url:		https://www.kernel.org/pub/linux/kernel/people/jeffm/reiserfsprogs/
@@ -45,7 +45,7 @@ variant on classical balanced tree algorithms.
 %autosetup -p1
 
 %build
-%configure --sbindir=/sbin
+%configure
 
 #clang compat
 echo '#define inline' >> include/config.h
@@ -55,11 +55,9 @@ echo '#define inline' >> include/config.h
 rm -f %{buildroot}%{_mandir}/man8/*
 %make_install
 
-find %{buildroot}%{_libdir} -name "*.*a" -delete
-
 %files
 %doc README
-/sbin/*
+%{_sbindir}/*
 %{_mandir}/*/*
 
 %files -n %{libname}
